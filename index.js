@@ -45,10 +45,9 @@ Use the higher-order function called getYears to do the following:
 
 function getYears(data, getFinalsCB) {
     /* code here */
-const filterYear = getFinalsCB(data).map(function(element){
-    return element.Year;
+    return getFinalsCB(data).map(function(element){
+        return element.Year;
 });
-    return filterYear;
 }
 console.log(getYears(fifaData, getFinals));
 
@@ -88,10 +87,18 @@ hint: the strings returned need to exactly match the string in step 4.
 
 function getWinnersByYear(data, getYearsCB, getWinnersCB) {
     /* code here */
-    const finalsYear = getYearsCB(data);
-    const winners = getWinnersCB(data);
-   return `In ${finalsYear}, ${winners} won the world cup!`;
-}
+    const finalsYear = getYearsCB(data, getFinals);
+
+    const winners = getWinnersCB(data, getFinals);
+   
+     return finalsYear.map(function(year, index){
+   
+        return `In ${year}, ${winners[index]} won the world cup!`;
+   });
+       
+    
+   }
+ 
 
 
 
@@ -107,7 +114,11 @@ Use the higher order function getAverageGoals to do the following:
 
 function getAverageGoals(getFinalsCB) {
    /* code here */
-   return getFinalsCB.reduce()
+  const data = getFinalsCB.reduce(function(accumulator, item){
+       return accumulator + item['Home Team Goals'] + item['Away Team Goals']
+   }, 0);
+   const result = Math.round((data/getFinalsCB.length) * 100) / 100;
+    return result;
 }
 
 
