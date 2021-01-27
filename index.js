@@ -99,7 +99,7 @@ function getWinnersByYear(data, getYearsCB, getWinnersCB) {
     
    }
  
-
+console.log(getWinnersByYear(fifaData, getYears, getWinners));
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -118,9 +118,9 @@ function getAverageGoals(getFinalsCB) {
        return accumulator + item['Home Team Goals'] + item['Away Team Goals']
    }, 0);
    const result = Math.round((data/getFinalsCB.length) * 100) / 100;
-    return result;
+    return result.toFixed([2]);
 }
-
+console.log(getAverageGoals(getFinals(fifaData)));
 
 
 
